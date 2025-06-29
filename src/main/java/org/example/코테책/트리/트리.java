@@ -23,11 +23,43 @@ package org.example.코테책.트리;
 //다만 균형이 맞아야 하니 균형이진트리로 만들어보자
 
 
+
 public class 트리 {
 
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
 
+    public String[] solution(String[] strArr){
+        String[] result = new String[3];
+        result[0] = preorder(strArr, 0).trim();
+        result[1] = inorder(strArr, 0).trim();
+        result[2] = postorder(strArr, 0).trim();
 
+        return result;
+    }
+
+    public String preorder(String[] arr, int idx){
+        if(idx >= arr.length){
+            return "";
+        }
+
+        return arr[idx] + " " + preorder(arr, idx * 2 + 1) + preorder(arr, idx * 2 + 2);
+    }
+
+    public String inorder(String[] arr, int idx){
+        if(idx >= arr.length){
+            return "";
+        }
+
+        return inorder(arr, idx * 2 + 1) + arr[idx] + " " +  inorder(arr, idx * 2 + 2);
+    }
+
+    public String postorder(String[] arr, int idx){
+        if(idx >= arr.length){
+            return "";
+        }
+
+        return postorder(arr, idx * 2 + 1) + postorder(arr, idx * 2 + 2) + arr[idx] + " " ;
+    }
 }
